@@ -1,11 +1,9 @@
 function Player(sounds) {
   this.sounds = sounds;
-  SC.whenStreamingReady(this.startSession);
+  SC.whenStreamingReady(this.startSession(this));
 }
 
-Player.prototype.startSession = function() {
-  var player = this;
-
+Player.prototype.startSession = function(player) {
   return function() {
     player.playRandom.call(player, null);
   }
