@@ -29,7 +29,7 @@ Player.prototype.getRandomSound = function() {
 
 SC.initialize({
   client_id: 'd214e0bc838d15c8b31cca256119cb23',
-  redirect_uri: 'http://blissdev.github.com/lightning/callback.html'
+  redirect_uri: window.location + 'callback.html'
 });
 
 // initiate auth popup
