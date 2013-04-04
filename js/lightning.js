@@ -5,7 +5,8 @@ SC.initialize({
 
 // initiate auth popup
 SC.connect(function() {
-  SC.get('/me', function(me) {
-    alert('Hello, ' + me.username);
+  SC.get('/me/favorites', { limit: 200 }, function(favorites) {
+    window.favorites = favorites;
+    console.log('favorites set');
   });
 });
