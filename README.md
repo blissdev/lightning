@@ -13,3 +13,4 @@ Randomize your SoundCloud favorites.
 * show timed comments
 * preload soundmanager?
 * cross-fade, if that's even possible
+* github corner link

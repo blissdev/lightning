@@ -3,8 +3,36 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Lightning for SoundCloud</title>
+  <style>
+    .ir {
+        background-color: transparent;
+        border: 0;
+        overflow: hidden;
+    }
+
+    .ir::before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 150%;
+    }
+
+    .connect {
+      display: none;
+      color: transparent;
+      border: 0;
+      background: transparent url('images/soundcloud_connect.png');
+      width: 124px;
+      height: 29px;
+      cursor: pointer;
+    }
+    .connect.visible {
+      display: inline-block;
+    }
+  </style>
 </head>
 <body>
+  <button id="connector" class="connect ir">Connect With SoundCloud</button>
   <img src="images/soundcloud_logo.png" alt="Powered By SoundCloud" />
 	
   <script src="http://connect.soundcloud.com/sdk.js"></script>
