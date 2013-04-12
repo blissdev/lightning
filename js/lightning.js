@@ -4,10 +4,14 @@ SC.initialize({
 });
 
 var connector = document.getElementById('connector');
+var play = document.getElementById('play-control');
+var next = document.getElementById('next');
 
 function Player(sounds) {
   this.sounds = sounds;
-  SC.whenStreamingReady(this.startSession(this));
+  this.state = 'initial';
+  //SC.whenStreamingReady(this.startSession(this));
+  SC.whenStreamingReady(function() { console.log('streaming is ready') });
 }
 
 Player.prototype.startSession = function(player) {
@@ -19,7 +23,7 @@ Player.prototype.startSession = function(player) {
 Player.prototype.playRandom = function() {
   var player = this;
   console.log('playing a random sound');
-  SC.stream(this.getRandomSound(), {
+  window.sm = SC.stream(this.getRandomSound(), {
     autoPlay: true,
     onfinish: function() {
       player.playRandom();
@@ -27,6 +31,33 @@ Player.prototype.playRandom = function() {
       console.log('the song is over :(');
     }
   });
+  this.state = 'playing';
+}
+
+Player.prototype.pause = function() {
+  console.log('pausing');
+  window.sm.pause();
+  this.state = 'paused';
+}
+Player.prototype.resume = function() {
+  console.log('resuming');
+  window.sm.resume();
+  this.state = 'playing';
+}
+
+Player.prototype.next = function() {
+  console.log('nexting');
+  var current = sm;
+  this.playRandom();
+  current.destruct();
+}
+
+Player.prototype.phase = function(state) {
+  var currentState = this.state;
+  console.log('current state', currentState);
+  if(currentState == 'initial') this.playRandom();
+  if(currentState == 'playing') this.pause();
+  if(currentState == 'paused') this.resume();
 }
 
 Player.prototype.getRandomSound = function() {
@@ -46,6 +77,14 @@ function loadFavorites() {
     localStorage.setItem('scapitkn', window.SC.storage().getItem('SC.accessToken'));
   }
 }
+
+play.addEventListener('click', function() {
+  player.phase();
+});
+
+next.addEventListener('click', function() {
+  player.next();
+});
 
 
 // initialize
