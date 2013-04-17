@@ -11,15 +11,10 @@
     height: 150%;
 }
 
-.connect {
+.pane {
   display: none;
-  color: transparent;
-  border: 0;
-  background: transparent url('../images/soundcloud_connect.png');
-  width: 124px;
-  height: 29px;
-  cursor: pointer;
 }
-.connect.visible {
-  display: inline-block;
+
+.pane.active {
+  display: block;
 }

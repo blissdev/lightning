@@ -1,20 +1,31 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
 	<title>Lightning for SoundCloud</title>
   <link rel="stylesheet" href="css/lightning.css" />
 </head>
 <body>
-  <button id="connector" class="connect ir">Connect With SoundCloud</button>
-  <img src="images/soundcloud_logo.png" alt="Powered By SoundCloud" />
 
-  <div id="player">
-    <button id="play-control">play / pause</button>
-    <button id="next">next</button>
-  </div>
+  <section class="pane" id="pane-fresh">
+    <button id="connect">Connect with SoundCloud</button>
+  </section>
+
+  <section class="pane" id="pane-player">
+    <div class="active-sound">
+      <img src="" class="sound-cover" />
+      <a href="#" class="song"></a>
+      <a href="#" class="artist"></a>
+      <span class="time"></span>
+    </div>
+    <button id="playback-control">Play / Pause</button>
+    <button id="next-control">Next</button>
+  </section>
 	
   <script src="http://connect.soundcloud.com/sdk.js"></script>
+  <script src="js/cloud.js"></script>
+  <script src="js/player.js"></script>
   <script src="js/lightning.js"></script>
 </body>
 </html>
