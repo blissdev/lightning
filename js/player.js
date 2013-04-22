@@ -7,6 +7,8 @@
       this.cloud = cloud;
       this.state = 'stopped';
       this.queue = [];
+
+      this.view = {};
     }
 
     Player.prototype.initialize = function(el) {
@@ -19,6 +21,9 @@
       this.nextControl.on('click', this.playNext.bind(this));
 
       this.soundElement = window.Lightning.element('.active-sound');
+      this.view.song = this.soundElement.find('.song');
+      this.view.artist = this.soundElement.find('.artist');
+      this.view.artwork = this.soundElement.find('.artwork');
 
       // start loading first sound
       this.loadNextSound();
@@ -60,9 +65,11 @@
     Player.prototype.renderSound = function() {
       var sound = this.active.sound;
 
-      this.soundElement.find('.song').htmlContent( sound.title );
-      this.soundElement.find('.artist').htmlContent( sound.user.username );
-
+      this.view.song.htmlContent( sound.title );
+      this.view.song.el.setAttribute('href', sound.permalink_url);
+      this.view.artist.htmlContent( sound.user.username );
+      this.view.artist.el.setAttribute('href', sound.user.permalink_url);
+      this.view.artwork.el.setAttribute('src', sound.artwork_url);
     }
 
     Player.prototype.loadNextSound = function() {
