@@ -74,7 +74,8 @@
       this.view.song.el.setAttribute('href', sound.permalink_url);
       this.view.artist.htmlContent( sound.user.username );
       this.view.artist.el.setAttribute('href', sound.user.permalink_url);
-      this.view.artwork.el.setAttribute('src', sound.artwork_url);
+      this.view.artwork.el.setAttribute('src',
+        sound.artwork_url || sound.user.avatar_url);
     }
 
     Player.prototype.loadNextSound = function() {
