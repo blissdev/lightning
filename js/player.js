@@ -12,10 +12,15 @@
     }
 
     Player.prototype.initialize = function(el) {
+      var player = this;
       this.element = el;
 
       this.playbackControl = el.find('#playback-control');
       this.playbackControl.on('click', this.togglePlayback.bind(this));
+
+      document.addEventListener('keyup', function(e) {
+        if(e.keyCode == 32) player.togglePlayback();
+      });
 
       this.nextControl = el.find('#next-control');
       this.nextControl.on('click', this.playNext.bind(this));
