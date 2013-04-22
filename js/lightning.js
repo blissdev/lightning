@@ -25,7 +25,8 @@
     function onAuthenticated(target) {
       var handler = function(e) {
         cloud.authenticate(function() {
-          readyToPlay();
+          cloud.retrieveFavorites(readyToPlay);
+          //readyToPlay();
         });
 
         target.off('click', handler);
