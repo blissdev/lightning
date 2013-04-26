@@ -5,8 +5,6 @@ Randomize your SoundCloud favorites.
 
 ### TODO
 * design
-* play/pause
-* include title / artist / artwork / link
 * state changes
 * store user token so you don't always have to authenticate
 * cache favorites for a period of time
@@ -14,3 +12,4 @@ Randomize your SoundCloud favorites.
 * preload soundmanager?
 * cross-fade, if that's even possible
 * github corner link
+* check for out of date auth token
