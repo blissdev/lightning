@@ -7,13 +7,10 @@
     var initialPane, action;
 
     if( cloud.alreadyAuthenticated() ) {
-      cloud.retrieveFavorites(readyToPlay);
+      cloud.retrieveFavorites(readyToPlay, showConnect);
     } else {
       // show fresh load ui
-      initialPane = element('#pane-fresh');
-      initialPane.addClass('active');
-      action = element('#connect');
-      action.on('click', onAuthenticated(action));
+      showConnect();
     }
 
     SC.whenStreamingReady(function() {
@@ -26,12 +23,18 @@
       var handler = function(e) {
         cloud.authenticate(function() {
           cloud.retrieveFavorites(readyToPlay);
-          //readyToPlay();
         });
 
         target.off('click', handler);
       }
       return handler;
+    }
+
+    function showConnect() {
+      initialPane = element('#pane-fresh');
+      initialPane.addClass('active');
+      action = element('#connect');
+      action.on('click', onAuthenticated(action));
     }
 
     function readyToPlay() {

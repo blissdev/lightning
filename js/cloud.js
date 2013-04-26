@@ -32,12 +32,16 @@
       return this.favorites[index];
     }
 
-    Cloud.prototype.retrieveFavorites = function(onRetrieval) {
+    Cloud.prototype.retrieveFavorites = function(onRetrieval, onError) {
       var cloud = this;
 
-      SC.get('/me/favorites', { limit: 200 }, function(favorites) {
-        cloud.favorites = favorites;
-        onRetrieval && onRetrieval();
+      SC.get('/me/favorites', { limit: 200 }, function(favorites, error) {
+        if(!error) {
+          cloud.favorites = favorites;
+          onRetrieval && onRetrieval();
+        } else {
+          onError && onError();
+        }
       });
 
       // save token if doesnt already exist
