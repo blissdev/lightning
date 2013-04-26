@@ -20,6 +20,7 @@
 
       document.addEventListener('keyup', function(e) {
         if(e.keyCode == 32) player.togglePlayback();
+        if(e.keyCode == 39 || e.keyCode == 78) player.playNext();
       });
 
       this.nextControl = el.find('#next-control');
